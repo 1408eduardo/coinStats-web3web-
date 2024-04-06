@@ -7,7 +7,106 @@ It's the core of the web3.storage server and client implementations.
 ## Usage
 
 Store your files with web3.storage and retrieve them via their unique Content ID. Our tools make it simple to hash your content locally, so you can verify the service only ever stores the exact bytes you asked us to. Pick the method of using web3.storage that works for you!
+### Add delta
+export class  MyWallet extends AbstractClientWallet {
+  // ....
+}
+export class MyWallet extends AbstractClientWallet {
+  async getConnector(): Promise<Connector> {
+    return new MyConnector();
+  }
+}
+  
+____________________________________
+import { Connector, ConnectParams } 
 
+  from "@thirdweb-dev/wallets";
+
+erxport class MyConnector extends 
+ Connector {
+  connect(options?: ConnectParams<TConnectParams>): Promise<string> {
+    // ...
+  }
+
+  disconnect(): Promise<void> {
+    // ...
+  }
+
+  getAddress(): Promise<string> {
+    // ...
+  }
+
+  getSigner(): Promise<Signer> {
+    // ...
+  }
+run
+  getProvider(): Promise<network-wallet-network><wallet-network-wallet> {
+     // ...
+  }
+
+  switchChain(chainId: number): Promise<void> {
+    // ...
+  }
+
+  isConnected(): Promise<boolean> {
+    // ...
+  }
+
+  setupListeners(): Promise<void> {
+    // ...
+  }
+
+  updateChains(chains: Chain[]): void {
+    // ...
+  }
+}
+import {
+  ThirdwebProvider,
+  ConnectWallet,
+  CoinStats, 
+  metamaskWallet,
+  coinbaseWallet,
+  deltaTrackerWallet, 
+  walletConnect,
+  localWallet,
+  embeddedWallet,
+} from "@thirdweb-dev/react";
+
+export default function App() {
+  return (
+    <ThirdwebProvider
+      activeChain="sepolia"
+      clientId="YOUR_CLIENT_ID"
+      locale={en()}
+      supportedWallets={[
+        deltaWalletTracker(),
+        metamaskWallet(),
+        coinbaseWallet({ recommended: FalseOrTrue }),
+        walletConnect(),
+        localWallet(),
+        embeddedWallet({
+          auth: {
+            options: [
+              "google",
+              "apple",
+            ],
+          },
+        }),
+      ]}
+      authConfig={{
+        authUrl: "/api/auth",
+        domain: "https://example.com",
+      }}
+    >
+      <ConnectWallet
+        theme={"dark"}
+        auth={{ loginOptional: false }}
+        switchToActiveChain={true}
+        modalSize={"wide"}
+      />
+    </ThirdwebProvider>
+  );
+}
 ### Website
 
 Visit https://console.web3.storage and upload right from the website. 
